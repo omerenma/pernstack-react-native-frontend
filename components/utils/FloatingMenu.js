@@ -8,7 +8,7 @@ export default () => {
 	return (
 		<FAB
 			visible={visible}
-			icon={{ name: "add", color: "white" }}
+			icon={{ name: "menu", color: "white" }}
 			color="coral"
 			placement="right"
 		/>

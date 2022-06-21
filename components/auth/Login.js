@@ -9,27 +9,29 @@ import {
 	TouchableOpacity,
 	Alert,
 } from "react-native";
-import { TextInput, Button, Card, TouchableRipple } from "react-native-paper";
+import { TextInput, Button, Card } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../../store/slices/login";
 
-export const Login = ({ navigation }) => {
+export const Login = ({ router, navigation }) => {
 	const dispatch = useDispatch();
-	const { loading } = useSelector((state) => state.login);
-
+	const { loading, user, isAuthenticated } = useSelector(
+		(state) => state.login
+	);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
 	const handleSubmit = (e) => {
-		e.preventDefault();
+		e.preventDefault()
 		const data = {
 			email,
 			password,
 		};
-		// dispatch(loginAction(data)).then((data) => {
-		//     return navigation.push('Dashboard')
-		// });
-		// navigation.push('Dashboard')
+		dispatch(loginAction(data))
+		.then(data => {
+			console.log(data)
+		})
+		
 	};
 
 	return (
@@ -64,7 +66,7 @@ export const Login = ({ navigation }) => {
 					<Button uppercase={false}>Terms & Conditions apply</Button>
 				</View>
 				<View style={styles.submit}>
-					<TouchableOpacity onPress={() => navigation.push("Dashboard")}>
+					<TouchableOpacity onPress={handleSubmit}>
 						{loading === true ? (
 							<ActivityIndicator animating={true} />
 						) : (
