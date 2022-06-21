@@ -8,11 +8,14 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/drawer": "^6.4.1",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.2",
     "@reduxjs/toolkit": "^1.8.2",
+    "@rneui/base": "^4.0.0-rc.4",
+    "@rneui/themed": "^4.0.0-rc.4",
     "all": "^0.0.0",
     "axios": "^0.27.2",
     "expo": "~45.0.0",
@@ -20,6 +23,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-native": "0.68.2",
+    "react-native-floating-action-menu": "^1.2.4",
     "react-native-gesture-handler": "~2.2.1",
     "react-native-navigation": "^7.28.0",
     "react-native-paper": "^4.12.1",

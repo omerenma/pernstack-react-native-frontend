@@ -1,5 +1,4 @@
-import React from "react";
-import {registerRootComponent} from 'expo'
+import React, {useState} from "react";
 import { Provider } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -13,13 +12,14 @@ import { Login } from "./components/auth/Login";
 import Dashboard from "./components/screems/Dashboard";
 
 
+
 const Stack = createNativeStackNavigator();
 
-export default function App({ children }) {
+export default function App() {
 	return (
 		<Provider store={store}>
 			<SafeAreaView>
-				<NavigationContainer>
+				 <NavigationContainer>
 					<Stack.Navigator>
 						<Stack.Screen
 							name="Home"
@@ -33,7 +33,8 @@ export default function App({ children }) {
 						/>
 						<Stack.Screen name="Dashboard" component={Dashboard} />
 					</Stack.Navigator>
-				</NavigationContainer>
+
+				</NavigationContainer> 
 			</SafeAreaView>
 		</Provider>
 	);
