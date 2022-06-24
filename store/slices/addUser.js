@@ -4,7 +4,7 @@ import axios from "axios";
 // import { getUserAction } from "./getUser";
 
 export const addUserAction = createAsyncThunk(
-	"add user",
+	"adduser",
 	async (data, thunkApi) => {
 		try {
 			const response = await axios.post(
@@ -24,7 +24,7 @@ export const addUserAction = createAsyncThunk(
 );
 
 const addUserSlice = createSlice({
-	name: "add user",
+	name: "user",
 	initialState: {
 		loading: false,
 		success: false,

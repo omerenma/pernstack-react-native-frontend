@@ -13,7 +13,7 @@ import { TextInput, Button, Card } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../../store/slices/login";
 
-export const Login = ({ router, navigation }) => {
+export const Login =  ({ router, navigation }) => {
 	const dispatch = useDispatch();
 	const { loading, user, isAuthenticated } = useSelector(
 		(state) => state.login
@@ -21,17 +21,22 @@ export const Login = ({ router, navigation }) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
-	const handleSubmit = (e) => {
-		e.preventDefault()
-		const data = {
-			email,
-			password,
-		};
-		dispatch(loginAction(data))
-		.then(data => {
-			console.log(data)
+	const handleSubmit = async (e) => {
+		// e.preventDefault();
+		await fetch("https://pernstackbackend.herokuapp.com/api/v1/auth/login", {
+			method: "POST",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				email: email,
+				password: password,
+			}),
 		})
-		
+			.then((response) => response.json())
+			.then((data) => console.log(data.message))
+			.catch((err) => console.log(err.message));
 	};
 
 	return (
@@ -66,7 +71,7 @@ export const Login = ({ router, navigation }) => {
 					<Button uppercase={false}>Terms & Conditions apply</Button>
 				</View>
 				<View style={styles.submit}>
-					<TouchableOpacity onPress={handleSubmit}>
+					<TouchableOpacity onPress={() => handleSubmit()}>
 						{loading === true ? (
 							<ActivityIndicator animating={true} />
 						) : (

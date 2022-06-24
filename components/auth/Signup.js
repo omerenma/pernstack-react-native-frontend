@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { showMessage, hideMessage } from "react-native-flash-message";
+
 import { ActivityIndicator, MD2Colors } from "react-native-paper";
 import {
 	View,
@@ -14,7 +15,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUserAction } from "../../store/slices/addUser";
 
 export const Signup = ({ navigation }) => {
-
 	const dispatch = useDispatch();
 	const { loading, success } = useSelector((state) => state.addUser);
 
@@ -31,10 +31,24 @@ export const Signup = ({ navigation }) => {
 			phone,
 			password,
 		};
-		dispatch(addUserAction(data)).then((data) => {
-			console.log(data, 'data')
-		})
-		
+
+		dispatch(addUserAction(data)).then((res) => {
+			if (res.type == "adduser/fulfilled") {
+				<View>
+					{showMessage({
+						message: "Signup successful",
+						type: "success",
+					})}
+				</View>;
+			} else {
+				<View>
+					{showMessage({
+						message: "Signup failed",
+						type: "danger",
+					})}
+				</View>;
+			}
+		});
 	};
 
 	return (
@@ -109,7 +123,7 @@ export const Signup = ({ navigation }) => {
 				<Text>Already have an account?</Text>
 
 				<Button
-					 onPress={() => navigation.navigate('Login', {name: 'Login'} )}
+					onPress={() => navigation.navigate("Login", { name: "Login" })}
 					style={{ marginTop: -9, marginLeft: -15 }}
 				>
 					Login

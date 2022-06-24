@@ -1,7 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Provider } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import FlashMessage from "react-native-flash-message";
 import { Navigation } from "react-native-navigation";
 import store from "./store/store";
 import SafeAreaView from "./components/SafeAreaView";
@@ -11,15 +12,13 @@ import { Signup } from "./components/auth/Signup";
 import { Login } from "./components/auth/Login";
 import Dashboard from "./components/screems/Dashboard";
 
-
-
 const Stack = createNativeStackNavigator();
 
 export default function App() {
 	return (
 		<Provider store={store}>
 			<SafeAreaView>
-				 <NavigationContainer>
+				<NavigationContainer>
 					<Stack.Navigator>
 						<Stack.Screen
 							name="Home"
@@ -33,8 +32,8 @@ export default function App() {
 						/>
 						<Stack.Screen name="Dashboard" component={Dashboard} />
 					</Stack.Navigator>
-
-				</NavigationContainer> 
+				</NavigationContainer>
+				<FlashMessage position="bottom" />
 			</SafeAreaView>
 		</Provider>
 	);
